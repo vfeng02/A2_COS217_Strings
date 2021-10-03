@@ -9,90 +9,142 @@
 
 /*------------------------------------------------------------*/
 
-size_t Str_getLength(const char pcSrc[])
+size_t Str_getLength(const char acSrc[])
 {
     size_t uLength = 0;
-    assert(pcSrc != NULL);
-    while (pcSrc[uLength] != '\0')
+    assert(acSrc != NULL);
+    while (acSrc[uLength] != '\0')
         uLength++;
     return uLength;
 }
 
-char *Str_copy(char pcDst[], const char pcSrc[])
-{
-    assert(pcSrc != NULL);
-    int i;
+char *Str_copy(char acDst[], const char acSrc[])
+{ /*
 
-    pcDst = (char *)calloc(Str_getLength(pcSrc), sizeof(char));
+    int i;
+    assert(pcSrc != NULL);
     assert(pcDst != NULL);
-    for (i = 0; i < Str_getLength(pcSrc); i++)
+
+    for (i = 0; i < (int)Str_getLength(pcSrc); i++)
         pcDst[i] = pcSrc[i];
     return pcDst;
+    */
+    int i = 0;
+    assert(acSrc != NULL);
+    assert(acDst != NULL);
+
+    while (acSrc[i] != '\0')
+    {
+        acDst[i] = acSrc[i];
+        i++;
+    }
+
+    acDst[i] = '\0';
+
+    return acDst;
 }
 
 char *Str_concat(char s1[], const char s2[])
 {
+    int i, j = 0;
     assert(s1 != NULL);
     assert(s2 != NULL);
-    int i;
 
-    if (sizeof(s1) / sizeof(char) < (Str_getLength(s2) + Str_getLength(s1) + 1))
+    while (s1[i] != '\0')
+    {
+        i++;
+    }
+
+    while (i < (int)Str_getLength(s1) && s2[j] != '\0')
+    {
+        s1[i] = s2[j];
+        i++;
+        j++;
+    }
+
+    s1[i] = '\0';
+    return s1;
+
+    /*
+    if (sizeof(s1) / sizeof(char) < (int)(Str_getLength(s2) + Str_getLength(s1) + 1))
         return s1;
 
     else
     {
-        for (i = 0; i <= Str_getLength(s2); i++)
-            s1[Str_getLength(s1)] = s2[i]; /* starting with the null char element, replace each subsequent 
-        element in s1 with an element from s2 */
+        for (i = 0; i <= (int)Str_getLength(s2); i++)
+            s1[(int)Str_getLength(s1)] = s2[i]; // starting with the null char element, replace each subsequent 
+        element in s1 with an element from s2
         return s1;
     }
+    */
 }
 
 int Str_compare(char s1[], const char s2[])
 {
+    int i;
     assert(s1 != NULL);
     assert(s2 != NULL);
-    int i;
 
-    for (i = 0; i < Str_getLength(s1); i++)
+    /*
+    while (s1[i] != 0)
     {
-        /*
-        if (s1[i] == '\0' && s2[i] == '\0')
-            return 0;
-        else if (s2[i] == '\0')
-            return 1;
-        else if (s1[i] == s2[i])
-            continue;
-        else if (s1[i] == '\0')
-            return -1;
-        else if (s2[i] == '\0')
-            return 1;
-        */
         if (s1[i] == s2[i])
             continue;
         else if (s1[i] < s2[i])
             return -1;
         else
             return 1;
+        i++;
     }
-    return 0;
+
+    if (s2[i] == '\0')
+        return 0;
+    else
+        return -1;
+        */
+
+    for (i = 0; i < (int)Str_getLength(s1); i++)
+    {
+
+        if (s1[i] == '\0' && s2[i] == '\0')
+            return 0;
+        else if (s2[i] == '\0')
+            return 1;
+        else if (s1[i] == '\0')
+            return -1;
+        else if (s1[i] == s2[i])
+            continue;
+        else if (s1[i] < s2[i])
+            return -1;
+        else
+            return 1;
+        /*
+        if (s1[i] == s2[i])
+            continue;
+        else if (s1[i] < s2[i])
+            return -1;
+        else
+            return 1;
+            */
+    }
 }
 
 char *Str_search(const char haystack[], const char needle[])
 {
-    assert(haystack != NULL);
-    assert(needle != NULL);
     int i, j;
     int matchIndex = -1;
 
-    if (needle[0] == '\0')
-        return haystack;
+    assert(haystack != NULL);
+    assert(needle != NULL);
 
-    for (i = 0; i < Str_getLength(haystack); i++)
+    if (needle[0] == '\0')
+        return (char *)haystack;
+
+    for (i = 0; i < (int)Str_getLength(haystack); i++)
     {
         if (haystack[i] == needle[0])
         {
-            for (j = 0; j <= Str_getLength(needle); j++)
+            for (j = 0; j <= (int)Str_getLength(needle); j++)
             {
                 if (haystack[i + j] != needle[j])
                     break;
@@ -105,7 +157,7 @@ char *Str_search(const char haystack[], const char needle[])
         return NULL;
 
     else
-        return haystack[matchIndex];
+        return (char *)&haystack[matchIndex];
 }
 
 /* Str_Search version 1 */
