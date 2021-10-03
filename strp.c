@@ -57,6 +57,30 @@ char *Str_concat(char *s1, const char *s2)
     return s1;
 }
 
-int Str_compare(char *s1, const char *s2);
+int Str_compare(char *s1, const char *s2) 
+{
+    char *p = s1;
+    assert(s1 != NULL);
+    assert(s2 != NULL);
+
+    while (*p != '\0') 
+    {
+        if (*p == '\0' && *s2 == '\0')
+            return 0;
+        else if (s2[i] == '\0')
+            return 1;
+        else if (s1[i] == '\0')
+            return -1;
+        else if (s1[i] == s2[i])
+            continue;
+        else if (s1[i] < s2[i])
+            return -1;
+        else
+            return 1;
+        p++;
+        s2++;
+    }
+    
+}
 
 char *Str_search(const char *haystack, const char *needle);
