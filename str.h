@@ -5,6 +5,7 @@
 
 #ifndef STR_INCLUDED
 #define STR_INCLUDED
+#include <stddef.h>
 
 /*--------------------------------------------------------------------*/
 

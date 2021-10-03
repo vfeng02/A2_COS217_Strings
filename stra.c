@@ -5,7 +5,6 @@
 #include "str.h"
 #include <stdio.h>
 #include <stdlib.h>
-// #include <ctype.h>
 #include <assert.h>
 
 /*------------------------------------------------------------*/
@@ -22,9 +21,11 @@ size_t Str_getLength(const char pcSrc[])
 char *Str_copy(char pcDst[], const char pcSrc[])
 {
     assert(pcSrc != NULL);
+    int i;
+
     pcDst = (char *)calloc(Str_getLength(pcSrc), sizeof(char));
     assert(pcDst != NULL);
-    for (int i = 0; i < Str_getLength(pcSrc); i++)
+    for (i = 0; i < Str_getLength(pcSrc); i++)
         pcDst[i] = pcSrc[i];
     return pcDst;
 }
@@ -33,13 +34,14 @@ char *Str_concat(char s1[], const char s2[])
 {
     assert(s1 != NULL);
     assert(s2 != NULL);
+    int i;
 
     if (sizeof(s1) / sizeof(char) < (Str_getLength(s2) + Str_getLength(s1) + 1))
         return s1;
 
     else
     {
-        for (int i = 0; i <= Str_getLength(s2); i++)
+        for (i = 0; i <= Str_getLength(s2); i++)
             s1[Str_getLength(s1)] = s2[i]; /* starting with the null char element, replace each subsequent 
         element in s1 with an element from s2 */
         return s1;
@@ -50,8 +52,9 @@ int Str_compare(char s1[], const char s2[])
 {
     assert(s1 != NULL);
     assert(s2 != NULL);
+    int i;
 
-    for (int i = 0; i < Str_getLength(s1); i++)
+    for (i = 0; i < Str_getLength(s1); i++)
     {
         /*
         if (s1[i] == '\0' && s2[i] == '\0')
@@ -79,16 +82,17 @@ char *Str_search(const char haystack[], const char needle[])
 {
     assert(haystack != NULL);
     assert(needle != NULL);
+    int i, j;
     int matchIndex = -1;
 
     if (needle[0] == '\0')
         return haystack;
 
-    for (int i = 0; i < Str_getLength(haystack); i++)
+    for (i = 0; i < Str_getLength(haystack); i++)
     {
         if (haystack[i] == needle[0])
         {
-            for (int j = 0; j <= Str_getLength(needle); j++)
+            for (j = 0; j <= Str_getLength(needle); j++)
             {
                 if (haystack[i + j] != needle[j])
                     break;
@@ -130,22 +134,6 @@ char *Str_search(const char haystack[], const char needle[])
             break;
         }
     }
-
-    // while (i < Str_getLength(haystack))
-    // {
-    //     if (haystack[i] == needle[0])
-    //     {
-    //     }
-    //     else
-    //         continue;
-    // }
-    // for (int i = 0; i < Str_getLength(haystack); i++) {
-    //     if haystack[i]
-    // }
-    // else if
-    // {
-    //     return
-    // }
     else return NULL;
 }
 
