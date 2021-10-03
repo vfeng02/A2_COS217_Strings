@@ -232,7 +232,6 @@ static void testCopy(void)
 
 /* Test the Str_concat() function. */
 
-/*
 static void testConcat(void)
 {
    char *pcResult;
@@ -278,18 +277,18 @@ static void testConcat(void)
    {
       const char acSrc[] = {'R', 'u', 't', 'h', '\0', 's'};
       char acDest1[] =
-         {'B', 'a', 'b', 'e', '\0', 'd', 'd', 'd', 'd', 'd'};     
+          {'B', 'a', 'b', 'e', '\0', 'd', 'd', 'd', 'd', 'd'};
       char acDest2[] =
-         {'B', 'a', 'b', 'e', '\0', 'd', 'd', 'd', 'd', 'd'};
+          {'B', 'a', 'b', 'e', '\0', 'd', 'd', 'd', 'd', 'd'};
       pcResult = Str_concat(acDest1, acSrc);
       ASSURE(pcResult == acDest1);
       (void)strcat(acDest2, acSrc);
       ASSURE(memcmp(acDest1, acDest2, sizeof(acDest1)) == 0);
    }
-   
+
    printf("   Stress Tests\n");
    fflush(stdout);
-   
+
    {
       int i;
       char acSrc[STRESS_STRING_SIZE];
@@ -297,17 +296,16 @@ static void testConcat(void)
       char acDest2[STRESS_STRING_SIZE] = {'\0'};
       for (i = 0; i < STRESS_TEST_COUNT; i++)
       {
-         randomString(acSrc, STRESS_STRING_SIZE/2);
-         randomString(acDest1, STRESS_STRING_SIZE/2);
+         randomString(acSrc, STRESS_STRING_SIZE / 2);
+         randomString(acDest1, STRESS_STRING_SIZE / 2);
          memcpy(acDest2, acDest1, STRESS_STRING_SIZE);
          pcResult = Str_concat(acDest1, acSrc);
          ASSURE(pcResult == acDest1);
          (void)strcat(acDest2, acSrc);
          ASSURE(memcmp(acDest1, acDest2, STRESS_STRING_SIZE) == 0);
       }
-   }   
+   }
 }
-*/
 
 /*--------------------------------------------------------------------*/
 
