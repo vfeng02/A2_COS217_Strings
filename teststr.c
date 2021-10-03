@@ -767,7 +767,7 @@ int main(int argc, char *argv[])
 
    testGetLength();
    testCopy();
-   /*testConcat();*/
+   testConcat();
    testCompare();
    testSearch();
 
