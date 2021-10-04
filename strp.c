@@ -6,7 +6,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
-#include <string.h> // DELETE AFTER STRSEARCH IS COMPLETE
 
 /*------------------------------------------------------------*/
 
@@ -77,8 +76,6 @@ int Str_compare(const char *s1, const char *s2)
         return -1;
     else
         return 1;
-
-    /* return 0;  this return statement will never be reached, but this is to remove the warning */
 }
 
 char *Str_search(const char *haystack, const char *needle)
@@ -122,8 +119,6 @@ char *Str_search(const char *haystack, const char *needle)
         {
             return (char *)firstOccur;
         }
-
-        /* return strstr(haystack, needle); */
     }
     return (char *)firstOccur; /* should be NULL by default because needle was not found */
 }
