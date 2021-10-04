@@ -51,6 +51,7 @@ static size_t replaceAndWrite(const char *pcLine,
       }
 
       count++;
+      pcTo = startTo;
       pcLine = startReplace + Str_getLength(pcFrom) - Str_getLength(pcTo);
    }
 
