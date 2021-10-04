@@ -20,10 +20,9 @@
 static size_t replaceAndWrite(const char *pcLine,
                               const char *pcFrom, const char *pcTo)
 {
-   char *startReplace;
-   char *startFrom;
-   char *startTo;
-   int count;
+   const char *startReplace;
+   const char *startTo = pcTo;
+   size_t count = 0;
 
    if (*pcFrom == '\0')
    {
@@ -32,10 +31,32 @@ static size_t replaceAndWrite(const char *pcLine,
          printf("%c", *pcLine);
          pcLine++;
       }
-      return 0;
+      return count;
    }
 
-/*
+   while (*pcLine != '\0')
+   {
+      startReplace = Str_search(pcLine, pcFrom);
+
+      while (pcLine != startReplace)
+      {
+         printf("%c", *pcLine);
+         pcLine++;
+      }
+
+      while (*pcTo != '\0')
+      {
+         printf("%c", *pcLine);
+         pcTo++;
+      }
+
+      count++;
+      pcLine = startReplace + Str_getLength(pcFrom) - Str_getLength(pcTo);
+   }
+
+   return count;
+
+   /*
    while (*pcLine != '\0')
    {
       if (*pcLine == *pcFrom)
@@ -105,7 +126,7 @@ int main(int argc, char *argv[])
 
    while (fgets(acLine, MAX_LINE_SIZE, stdin) != NULL)
       /* Insert your code here. */
-
-      fprintf(stderr, "%lu replacements\n", (unsigned long)uReplaceCount);
+      uReplaceCount = replaceAndWrite(acLine, pcFrom, pcTo);
+   fprintf(stderr, "%lu replacements\n", (unsigned long)uReplaceCount);
    return 0;
 }
