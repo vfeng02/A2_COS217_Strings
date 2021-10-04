@@ -1,6 +1,6 @@
 /*--------------------------------------------------------------------*/
 /* replace.c                                                          */
-/* Author: ???                                                        */
+/* Author: Vicky Feng                                                 */
 /*--------------------------------------------------------------------*/
 
 #include "str.h"
@@ -20,7 +20,49 @@
 static size_t replaceAndWrite(const char *pcLine,
                               const char *pcFrom, const char *pcTo)
 {
-   /* Insert your code here. */
+   char *startReplace;
+   char *startFrom;
+   char *startTo;
+   int count;
+
+   if (*pcFrom == '\0')
+   {
+      while (*pcLine != '\0')
+      {
+         printf("%c", *pcLine);
+         pcLine++;
+      }
+      return 0;
+   }
+
+/*
+   while (*pcLine != '\0')
+   {
+      if (*pcLine == *pcFrom)
+      {
+         startReplace = pcLine;
+         startFrom = pcFrom;
+         startTo = pcTo;
+
+         while (*pcFrom != '\0')
+         {
+            if (*pcLine == *pcFrom)
+            {
+               pcLine++;
+               pcFrom++;
+               pcTo++;
+            }
+            else
+            {
+               pcFrom = startFrom;
+               pcTo = startTo;
+               break;
+            }
+         }
+      }
+   }
+
+   */
 }
 
 /*--------------------------------------------------------------------*/
@@ -38,8 +80,14 @@ static size_t replaceAndWrite(const char *pcLine,
 
 int main(int argc, char *argv[])
 {
-   enum {MAX_LINE_SIZE = 4096};
-   enum {PROPER_ARG_COUNT = 3};
+   enum
+   {
+      MAX_LINE_SIZE = 4096
+   };
+   enum
+   {
+      PROPER_ARG_COUNT = 3
+   };
 
    char acLine[MAX_LINE_SIZE];
    char *pcFrom;
@@ -58,6 +106,6 @@ int main(int argc, char *argv[])
    while (fgets(acLine, MAX_LINE_SIZE, stdin) != NULL)
       /* Insert your code here. */
 
-   fprintf(stderr, "%lu replacements\n", (unsigned long)uReplaceCount);
+      fprintf(stderr, "%lu replacements\n", (unsigned long)uReplaceCount);
    return 0;
 }

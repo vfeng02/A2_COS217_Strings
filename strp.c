@@ -83,5 +83,47 @@ int Str_compare(const char *s1, const char *s2)
 
 char *Str_search(const char *haystack, const char *needle)
 {
-    return strstr(haystack, needle);
+    const char *firstOccur = NULL;
+    const char *startNeedle = needle;
+    assert(haystack != NULL);
+    assert(needle != NULL);
+
+    if (*needle == '\0')
+    {
+        return (char *)haystack;
+    }
+
+    while (*haystack != '\0')
+    {
+        if (*haystack == *needle)
+        {
+            firstOccur = haystack;
+
+            while (*needle != '\0')
+            {
+                if (*haystack == *needle)
+                {
+                    haystack++;
+                    needle++;
+                }
+                else
+                {
+                    haystack = haystack - (needle - startNeedle);
+                    needle = startNeedle;
+                    firstOccur = NULL;
+                    break;
+                }
+            }
+        }
+
+        haystack++;
+
+        if (*needle == '\0')
+        {
+            return (char *)firstOccur;
+        }
+
+        /* return strstr(haystack, needle); */
+    }
+    return (char *)firstOccur; /* should be NULL by default because needle was not found */
 }

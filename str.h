@@ -13,11 +13,11 @@
 
 /*  */
 
-size_t Str_getLength(const char pcSrc[]);
+size_t Str_getLength(const char acSrc[]);
 
-char *Str_copy(char pcDst[], const char pcSrc[]);
+char *Str_copy(char acDst[], const char acSrc[]);
 
-char *Str_concat(char s1[], const char s2[]);
+char *Str_concat(char acDst[], const char acSrc[]);
 
 int Str_compare(const char s1[], const char s2[]);
 

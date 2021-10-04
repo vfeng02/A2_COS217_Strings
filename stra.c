@@ -80,8 +80,11 @@ int Str_compare(const char s1[], const char s2[])
 
 char *Str_search(const char haystack[], const char needle[])
 {
-    return strstr(haystack, needle);
-    /*
+    assert(haystack != NULL);
+    assert(needle != NULL);
+
+    /* return strstr(haystack, needle); */
+    
     size_t i;
     size_t j;
     size_t sizeHaystack = Str_getLength(haystack);
@@ -95,7 +98,7 @@ char *Str_search(const char haystack[], const char needle[])
         return (char *)haystack;
 
     for (i = 0; i < sizeHaystack; i++)
-    {s
+    {
         if (haystack[i] == needle[0])
         {
             for (j = 0; j <= sizeNeedle; j++)
@@ -107,14 +110,13 @@ char *Str_search(const char haystack[], const char needle[])
                 }
 
                 if (needle[j] == '\0')
-                    return (char *)&haystack[matchIndex];
+                    return (char *) &haystack[matchIndex];
             }
         }
     }
 
     return NULL;
 
-    */
 
     /*
     else
