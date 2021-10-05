@@ -19,6 +19,8 @@ size_t Str_getLength(const char *pcSrc)
     return (size_t)(pcEnd - pcSrc);
 }
 
+/*------------------------------------------------------------*/
+
 char *Str_copy(char *pcDst, const char *pcSrc)
 {
     char *p = pcDst;
@@ -37,6 +39,8 @@ char *Str_copy(char *pcDst, const char *pcSrc)
 
     return pcDst;
 }
+
+/*------------------------------------------------------------*/
 
 char *Str_concat(char *pcDst, const char *pcSrc)
 {
@@ -59,6 +63,8 @@ char *Str_concat(char *pcDst, const char *pcSrc)
     return pcDst;
 }
 
+/*------------------------------------------------------------*/
+
 int Str_compare(const char *s1, const char *s2)
 {
     assert(s1 != NULL);
@@ -77,6 +83,8 @@ int Str_compare(const char *s1, const char *s2)
     else
         return 1;
 }
+
+/*------------------------------------------------------------*/
 
 char *Str_search(const char *haystack, const char *needle)
 {

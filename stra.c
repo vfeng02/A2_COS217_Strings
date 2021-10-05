@@ -6,9 +6,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
-#include <string.h>
 
 /*------------------------------------------------------------*/
+
 
 size_t Str_getLength(const char acSrc[])
 {
@@ -18,6 +18,8 @@ size_t Str_getLength(const char acSrc[])
         uLength++;
     return uLength;
 }
+
+/*------------------------------------------------------------*/
 
 char *Str_copy(char acDst[], const char acSrc[])
 {
@@ -35,6 +37,8 @@ char *Str_copy(char acDst[], const char acSrc[])
 
     return acDst;
 }
+
+/*------------------------------------------------------------*/
 
 char *Str_concat(char acDst[], const char acSrc[])
 {
@@ -58,6 +62,7 @@ char *Str_concat(char acDst[], const char acSrc[])
     acDst[i] = '\0';
     return acDst;
 }
+/*------------------------------------------------------------*/
 
 int Str_compare(const char s1[], const char s2[])
 {
@@ -78,13 +83,13 @@ int Str_compare(const char s1[], const char s2[])
         return 1;
 }
 
+
+/*------------------------------------------------------------*/
+
+
 char *Str_search(const char haystack[], const char needle[])
 {
-    assert(haystack != NULL);
-    assert(needle != NULL);
 
-    /* return strstr(haystack, needle); */
-    
     size_t i;
     size_t j;
     size_t sizeHaystack = Str_getLength(haystack);
@@ -97,29 +102,26 @@ char *Str_search(const char haystack[], const char needle[])
     if (needle[0] == '\0')
         return (char *)haystack;
 
-    for (i = 0; i < sizeHaystack; i++)
+    for (i = 0; i <= sizeHaystack; i++)
     {
         if (haystack[i] == needle[0])
         {
             for (j = 0; j <= sizeNeedle; j++)
             {
-                if (haystack[i + j] != needle[j])
+                if (needle[j] == '\0')
                 {
-                    i = i + j;
-                    break;
+                    matchIndex = i;
+                    return (char *)&haystack[matchIndex];
                 }
 
-                if (needle[j] == '\0')
-                    return (char *) &haystack[matchIndex];
+                else if (haystack[i + j] != needle[j])
+                {
+                    break;
+                }
             }
         }
     }
 
-    return NULL;
-
-
-    /*
-    else
-    return (char *) &haystack[matchIndex];
-    */
+    return NULL; /* if the end of haystack is reached and return
+     has not been executed, then no needle was found */
 }
