@@ -12,6 +12,27 @@ in the "Policies" web page (also available on armlab in the file
 ~cos217/AuthorizedSourcesList ) to this section of the readme file,
 and edit it as appropriate.
 
+The course's lectures. (USED)
+
+The course's precepts. (USED)
+
+The course's website. (USED)
+
+Documents that are referenced directly by the course's website. Such documents include the course's lecture slides and precept handouts.
+
+The course's textbooks. (USED)
+
+The man pages on the armlab cluster. (USED)
+
+The course's current staff members outside of class time through office hours. (USED)
+
+The course's current staff members outside of class time through meetings.
+
+The course's current staff members outside of class time through Ed. (USED)
+
+The course's current staff members outside of class time through e-mail.
+
+Current lab teaching assistants through visits to the course labs. (USED)
 
 
 ------------------------------------------------------------------------
@@ -47,7 +68,7 @@ disagreements with them? Copy the splint warnings here, and express your
 disagreement after each warning. If there are no warnings, then write
 "None."
 
-
+None
 
 ------------------------------------------------------------------------
 What warnings does critTer generate on stra.c, and what are your
@@ -55,7 +76,14 @@ disagreements with them? Copy the critTer warnings here, and express
 your disagreement after each warning. If there are no warnings, then
 write "None."
 
+   stra.c: line 115: low priority: 
+   This area is deeply nested at level 4, consider refactoring
 
+   stra.c: line 112: low priority: 
+   This area is deeply nested at level 4, consider refactoring
+
+In order to implement the Str_search module, it was necessary to 
+create two nested for loops and use conditionals within the loops.
 
 ------------------------------------------------------------------------
 What warnings does splint generate on strp.c, and what are your
@@ -63,7 +91,7 @@ disagreements with them? Copy the splint warnings here, and express your
 disagreement after each warning. If there are no warnings, then write
 "None."
 
-
+None
 
 ------------------------------------------------------------------------
 What warnings does critTer generate on strp.c, and what are your
@@ -72,19 +100,34 @@ your disagreement after each warning. If there are no warnings, then
 write "None."
 
    strp.c: line 13: low priority: 
-   Parameter name 'pcSrc' in function definition differs from parameter name 'acSrc' in function declaration
+   Parameter name 'pcSrc' in function definition differs from parameter 
+   name 'acSrc' in function declaration
 
    strp.c: line 25: low priority: 
-   Parameter name 'pcDst' in function definition differs from parameter name 'acDst' in function declaration
+   Parameter name 'pcDst' in function definition differs from parameter 
+   name 'acDst' in function declaration
 
    strp.c: line 25: low priority: 
-   Parameter name 'pcSrc' in function definition differs from parameter name 'acSrc' in function declaration
+   Parameter name 'pcSrc' in function definition differs from parameter 
+   name 'acSrc' in function declaration
 
    strp.c: line 46: low priority: 
-   Parameter name 'pcDst' in function definition differs from parameter name 'acDst' in function declaration
+   Parameter name 'pcDst' in function definition differs from parameter 
+   name 'acDst' in function declaration
 
    strp.c: line 46: low priority: 
-   Parameter name 'pcSrc' in function definition differs from parameter name 'acSrc' in function declaration
+   Parameter name 'pcSrc' in function definition differs from parameter 
+   name 'acSrc' in function declaration
+
+Since the array and pointer notations are equivalent to the compiler, 
+I chose to use the array parameter names from stra.c for the header, 
+which generated these warnings when strp.c called the str.h header.
+
+   strp.c: line 115: low priority: 
+   This area is deeply nested at level 4, consider refactoring
+
+In order to implement the Str_search module, it was necessary to 
+create two nested for loops and use conditionals within the loops.
 
 ------------------------------------------------------------------------
 What warnings does splint generate on replace.c, and what are your
@@ -92,7 +135,7 @@ disagreements with them? Copy the splint warnings here, and express your
 disagreement after each warning. If there are no warnings, then write
 "None."
 
-
+None
 
 ------------------------------------------------------------------------
 What warnings does critTer generate on replace.c, and what are your
@@ -100,13 +143,16 @@ disagreements with them? Copy the critTer warnings here, and express
 your disagreement after each warning. If there are no warnings, then
 write "None."
 
-
+None
 
 ------------------------------------------------------------------------
 Is it possible for Str_copy or Str_concat to call assert to verify
 that the destination memory area specified by the caller is large
 enough? Explain.
 
-
+Yes. Since assert(expr) simply checks whether the contained expression
+is true, we can set the expression to be 
+sizeof(pcDst[])/sizeof(char) >= strlen(pcSrc) + 1 to check whether the
+destination memory area is large enough. 
 
 ------------------------------------------------------------------------

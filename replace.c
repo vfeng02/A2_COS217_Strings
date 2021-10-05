@@ -40,8 +40,10 @@ static size_t replaceAndWrite(const char *pcLine,
 
    while (*pcLine != '\0')
    {
+      /* Search for the first occurence of pcFrom in pcLine. */
       startReplace = Str_search(pcLine, pcFrom);
 
+      /* If pcFrom is not found, print the rest of pcLine */
       if (startReplace == NULL)
       {
          while (*pcLine != '\0')
@@ -52,6 +54,8 @@ static size_t replaceAndWrite(const char *pcLine,
          break;
       }
 
+      /* Write each char of pcLine to stdout and increment pointer 
+      until the position of pcFrom is reached. */
       while (pcLine != startReplace)
       {
          putchar(*pcLine);
@@ -65,40 +69,14 @@ static size_t replaceAndWrite(const char *pcLine,
       }
 
       count++;
+
+      /* reset pcTo and update pcLine to point to the next 
+      char not in pcFrom */
       pcTo = startTo;
       pcLine = startReplace + Str_getLength(pcFrom);
    }
 
    return count;
-
-   /*
-   while (*pcLine != '\0')
-   {
-      if (*pcLine == *pcFrom)
-      {
-         startReplace = pcLine;
-         startFrom = pcFrom;
-         startTo = pcTo;
-
-         while (*pcFrom != '\0')
-         {
-            if (*pcLine == *pcFrom)
-            {
-               pcLine++;
-               pcFrom++;
-               pcTo++;
-            }
-            else
-            {
-               pcFrom = startFrom;
-               pcTo = startTo;
-               break;
-            }
-         }
-      }
-   }
-
-   */
 }
 
 /*--------------------------------------------------------------------*/

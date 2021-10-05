@@ -23,11 +23,13 @@ size_t Str_getLength(const char *pcSrc)
 
 char *Str_copy(char *pcDst, const char *pcSrc)
 {
-    char *current = pcDst;
+    char *current = pcDst; /* char pointer for current position */
 
     assert(pcDst != NULL);
     assert(pcSrc != NULL);
 
+    /* copy each char of source string to destination string and 
+    increment pointer until end of source string is reached */
     while (*pcSrc != '\0')
     {
         *current = *pcSrc;
@@ -49,6 +51,8 @@ char *Str_concat(char *pcDst, const char *pcSrc)
     assert(pcDst != NULL);
     assert(pcSrc != NULL);
 
+    /* find the end of string acDst and append 
+    string acSrc starting at that position */
     while (*current != '\0')
         current++;
 
@@ -98,6 +102,10 @@ char *Str_search(const char *haystack, const char *needle)
         return (char *)haystack;
     }
 
+    /* If a char in haystack matches the first char of needle,
+    maintain a pointer to that char in haystack and compare every
+    subsequent char. */
+
     while (*haystack != '\0')
     {
         if (*haystack == *needle)
@@ -113,7 +121,10 @@ char *Str_search(const char *haystack, const char *needle)
                 }
                 else
                 {
-                    haystack = haystack - (needle - startNeedle);
+                    /* if char in haystack differs from needle, reset 
+                    pointers to haystack, needle and first occurrence 
+                    of needle */
+                    haystack = firstOccur;
                     needle = startNeedle;
                     firstOccur = NULL;
                     break;
@@ -128,5 +139,6 @@ char *Str_search(const char *haystack, const char *needle)
             return (char *)firstOccur;
         }
     }
-    return (char *)firstOccur; /* should be NULL by default because needle was not found */
+    return NULL; /* if the end of haystack is reached, 
+    needle was not found */
 }

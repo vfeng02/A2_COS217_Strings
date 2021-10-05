@@ -22,9 +22,12 @@ size_t Str_getLength(const char acSrc[])
 
 char *Str_copy(char acDst[], const char acSrc[])
 {
-    int i = 0;
+    size_t i = 0;
     assert(acSrc != NULL);
     assert(acDst != NULL);
+
+    /* copy each char of source string to destination string and 
+    increment array index until end of soruce string is reached*/
 
     while (acSrc[i] != '\0')
     {
@@ -46,6 +49,8 @@ char *Str_concat(char acDst[], const char acSrc[])
     assert(acDst != NULL);
     assert(acSrc != NULL);
 
+    /* find the index of the end of string acDst and append 
+    string acSrc starting at that index */
     while (acDst[i] != '\0')
     {
         i++;
@@ -99,6 +104,10 @@ char *Str_search(const char haystack[], const char needle[])
     if (needle[0] == '\0')
         return (char *)haystack;
 
+    /* If a char in haystack matches the first char of needle,
+    compare every subsequent char. If the end of needle is reached,
+    return the index of the first char of needle, otherwise if a char 
+    in haystack differs from needle, break out of the for loop */
     for (i = 0; i <= sizeHaystack; i++)
     {
         if (haystack[i] == needle[0])
@@ -120,5 +129,5 @@ char *Str_search(const char haystack[], const char needle[])
     }
 
     return NULL; /* if the end of haystack is reached and return
-     has not been executed, then no needle was found */
+     condition has not been executed, then no needle was found */
 }
