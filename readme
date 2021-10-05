@@ -3,7 +3,7 @@ Assignment 2 readme File
 ------------------------------------------------------------------------
 What is your name?
 
-
+Vicky Feng
 
 ------------------------------------------------------------------------
 What authorized sources of information did you use to complete the
@@ -26,12 +26,13 @@ interaction, may additionally require the interaction being reported
 to the Committee on Discipline. Write "None" if you used no
 unauthorized sources of information.
 
-
+None
 
 ------------------------------------------------------------------------
 What is your assessment of the assignment? Was it helpful? Was it fun?
 
-
+It was helpful, but I also felt like the specification was not as 
+detailed as the first assignment (which I guess is normal)
 
 ------------------------------------------------------------------------
 (optional) What information can you provide about your submission that
@@ -70,7 +71,20 @@ disagreements with them? Copy the critTer warnings here, and express
 your disagreement after each warning. If there are no warnings, then
 write "None."
 
+   strp.c: line 13: low priority: 
+   Parameter name 'pcSrc' in function definition differs from parameter name 'acSrc' in function declaration
 
+   strp.c: line 25: low priority: 
+   Parameter name 'pcDst' in function definition differs from parameter name 'acDst' in function declaration
+
+   strp.c: line 25: low priority: 
+   Parameter name 'pcSrc' in function definition differs from parameter name 'acSrc' in function declaration
+
+   strp.c: line 46: low priority: 
+   Parameter name 'pcDst' in function definition differs from parameter name 'acDst' in function declaration
+
+   strp.c: line 46: low priority: 
+   Parameter name 'pcSrc' in function definition differs from parameter name 'acSrc' in function declaration
 
 ------------------------------------------------------------------------
 What warnings does splint generate on replace.c, and what are your

@@ -9,7 +9,6 @@
 
 /*------------------------------------------------------------*/
 
-
 size_t Str_getLength(const char acSrc[])
 {
     size_t uLength = 0;
@@ -83,9 +82,7 @@ int Str_compare(const char s1[], const char s2[])
         return 1;
 }
 
-
 /*------------------------------------------------------------*/
-
 
 char *Str_search(const char haystack[], const char needle[])
 {
@@ -94,7 +91,7 @@ char *Str_search(const char haystack[], const char needle[])
     size_t j;
     size_t sizeHaystack = Str_getLength(haystack);
     size_t sizeNeedle = Str_getLength(needle);
-    size_t matchIndex = -1;
+    size_t matchIndex = NULL;
 
     assert(haystack != NULL);
     assert(needle != NULL);
