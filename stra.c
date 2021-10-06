@@ -96,7 +96,7 @@ char *Str_search(const char haystack[], const char needle[])
     size_t j;
     size_t sizeHaystack = Str_getLength(haystack);
     size_t sizeNeedle = Str_getLength(needle);
-    size_t matchIndex = NULL;
+    size_t matchIndex;
 
     assert(haystack != NULL);
     assert(needle != NULL);
